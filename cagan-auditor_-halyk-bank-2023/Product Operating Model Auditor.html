@@ -1,0 +1,716 @@
+
+        <style>
+        @import url(https://fonts.googleapis.com/css?family=Google+Sans+Text);
+        html {
+          font-family: 'Google Sans Text', 'Google Sans';
+          font-size: 14px;
+          color-scheme: light dark;
+          background: light-dark(white, black);
+          color: light-dark(black, white);
+        }
+        </style>
+        
+        <script type="importmap">{"imports":{"@modelcontextprotocol/sdk/":"https://esm.sh/@modelcontextprotocol/sdk/dist/esm/","https://esm.sh/@modelcontextprotocol/sdk@^1.11.0/es2022/":"https://esm.sh/@modelcontextprotocol/sdk@^1.11.0/es2022/dist/esm/","https://esm.sh/@modelcontextprotocol/sdk@^1.11.0/client/index?target=es2022":"https://esm.sh/@modelcontextprotocol/sdk@^1.11.0/dist/esm/client/index?target=es2022","https://esm.sh/@modelcontextprotocol/sdk@^1.11.0/types?target=es2022":"https://esm.sh/@modelcontextprotocol/sdk@^1.11.0/dist/esm/types?target=es2022","react":"https://esm.sh/react@^19.2.4","react-dom/":"https://esm.sh/react-dom@^19.2.4/","react/":"https://esm.sh/react@^19.2.4/","@/index":"data:application/javascript;base64,aW1wb3J0IHsganN4IGFzIF9qc3ggfSBmcm9tICJyZWFjdC9qc3gtcnVudGltZSI7CmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7CmltcG9ydCBSZWFjdERPTSBmcm9tICdyZWFjdC1kb20vY2xpZW50JzsKaW1wb3J0IEFwcCBmcm9tICdAL0FwcCc7CmNvbnN0IHJvb3RFbGVtZW50ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Jvb3QnKTsKaWYgKCFyb290RWxlbWVudCkgewogICAgdGhyb3cgbmV3IEVycm9yKCJDb3VsZCBub3QgZmluZCByb290IGVsZW1lbnQgdG8gbW91bnQgdG8iKTsKfQpjb25zdCByb290ID0gUmVhY3RET00uY3JlYXRlUm9vdChyb290RWxlbWVudCk7CnJvb3QucmVuZGVyKF9qc3goUmVhY3QuU3RyaWN0TW9kZSwgeyBjaGlsZHJlbjogX2pzeChBcHAsIHt9KSB9KSk7Cg==","@":"data:application/javascript;base64,aW1wb3J0IHsganN4IGFzIF9qc3ggfSBmcm9tICJyZWFjdC9qc3gtcnVudGltZSI7CmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7CmltcG9ydCBSZWFjdERPTSBmcm9tICdyZWFjdC1kb20vY2xpZW50JzsKaW1wb3J0IEFwcCBmcm9tICdAL0FwcCc7CmNvbnN0IHJvb3RFbGVtZW50ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Jvb3QnKTsKaWYgKCFyb290RWxlbWVudCkgewogICAgdGhyb3cgbmV3IEVycm9yKCJDb3VsZCBub3QgZmluZCByb290IGVsZW1lbnQgdG8gbW91bnQgdG8iKTsKfQpjb25zdCByb290ID0gUmVhY3RET00uY3JlYXRlUm9vdChyb290RWxlbWVudCk7CnJvb3QucmVuZGVyKF9qc3goUmVhY3QuU3RyaWN0TW9kZSwgeyBjaGlsZHJlbjogX2pzeChBcHAsIHt9KSB9KSk7Cg==","@/App":"data:application/javascript;base64,aW1wb3J0IHsganN4IGFzIF9qc3gsIGpzeHMgYXMgX2pzeHMgfSBmcm9tICJyZWFjdC9qc3gtcnVudGltZSI7Ci8vIC0tLSBDb21wb25lbnRzIC0tLQpjb25zdCBIZWFkZXIgPSAoKSA9PiAoX2pzeHMoImhlYWRlciIsIHsgY2xhc3NOYW1lOiAibm8tcHJpbnQgYmctd2hpdGUgYm9yZGVyLWIgYm9yZGVyLXNsYXRlLTIwMCBzdGlja3kgdG9wLTAgei0xMCBweS00IHB4LTYgZmxleCBqdXN0aWZ5LWJldHdlZW4gaXRlbXMtY2VudGVyIHNoYWRvdy1zbSIsIGNoaWxkcmVuOiBbX2pzeHMoImRpdiIsIHsgY2xhc3NOYW1lOiAiZmxleCBpdGVtcy1jZW50ZXIgZ2FwLTMiLCBjaGlsZHJlbjogW19qc3goImRpdiIsIHsgY2xhc3NOYW1lOiAiYmctZW1lcmFsZC02MDAgdGV4dC13aGl0ZSBwLTIgcm91bmRlZC1sZyIsIGNoaWxkcmVuOiBfanN4KCJpIiwgeyBjbGFzc05hbWU6ICJmYXMgZmEtbWljcm9zY29wZSB0ZXh0LXhsIiB9KSB9KSwgX2pzeHMoImRpdiIsIHsgY2hpbGRyZW46IFtfanN4KCJoMSIsIHsgY2xhc3NOYW1lOiAiZm9udC1ib2xkIHRleHQtbGcgdGV4dC1zbGF0ZS04MDAgdXBwZXJjYXNlIHRyYWNraW5nLXdpZGVyIiwgY2hpbGRyZW46ICJQcm9kdWN0IFRyYW5zZm9ybWF0aW9uIEF1ZGl0b3IiIH0pLCBfanN4KCJwIiwgeyBjbGFzc05hbWU6ICJ0ZXh0LXhzIHRleHQtc2xhdGUtNTAwIGZvbnQtbWVkaXVtIiwgY2hpbGRyZW46ICJTVlBHIEZyYW1ld29yayBJbXBsZW1lbnRhdGlvbiB2MS40IiB9KV0gfSldIH0pLCBfanN4cygiYnV0dG9uIiwgeyBvbkNsaWNrOiAoKSA9PiB3aW5kb3cucHJpbnQoKSwgY2xhc3NOYW1lOiAiYmctc2xhdGUtODAwIGhvdmVyOmJnLXNsYXRlLTcwMCB0ZXh0LXdoaXRlIHB4LTQgcHktMiByb3VuZGVkIHRleHQtc20gZm9udC1zZW1pYm9sZCB0cmFuc2l0aW9uLWNvbG9ycyBmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMiIsIGNoaWxkcmVuOiBbX2pzeCgiaSIsIHsgY2xhc3NOYW1lOiAiZmFzIGZhLXByaW50IiB9KSwgIiBFeHBvcnQgTWVtbyJdIH0pXSB9KSk7CmNvbnN0IE1lbW9NZXRhZGF0YSA9ICgpID0+IChfanN4KCJkaXYiLCB7IGNsYXNzTmFtZTogImJvcmRlci1iLTIgYm9yZGVyLXNsYXRlLTgwMCBwYi02IG1iLTgiLCBjaGlsZHJlbjogX2pzeHMoImRpdiIsIHsgY2xhc3NOYW1lOiAiZ3JpZCBncmlkLWNvbHMtWzgwcHhfMWZyXSBnYXAteS0yIHRleHQtc20iLCBjaGlsZHJlbjogW19qc3goInNwYW4iLCB7IGNsYXNzTmFtZTogImZvbnQtYm9sZCB0ZXh0LXNsYXRlLTUwMCIsIGNoaWxkcmVuOiAiVE86IiB9KSwgX2pzeCgic3BhbiIsIHsgY2xhc3NOYW1lOiAiZm9udC1ib2xkIHVwcGVyY2FzZSIsIGNoaWxkcmVuOiAiQm9hcmQgb2YgRGlyZWN0b3JzLCBIYWx5ayBCYW5rIEpTQyIgfSksIF9qc3goInNwYW4iLCB7IGNsYXNzTmFtZTogImZvbnQtYm9sZCB0ZXh0LXNsYXRlLTUwMCIsIGNoaWxkcmVuOiAiRlJPTToiIH0pLCBfanN4KCJzcGFuIiwgeyBjbGFzc05hbWU6ICJmb250LXNlbWlib2xkIGl0YWxpYyIsIGNoaWxkcmVuOiAiRXh0ZXJuYWwgUHJvZHVjdCBUcmFuc2Zvcm1hdGlvbiBBdWRpdG9yIChTVlBHIFRyYWluZWQpIiB9KSwgX2pzeCgic3BhbiIsIHsgY2xhc3NOYW1lOiAiZm9udC1ib2xkIHRleHQtc2xhdGUtNTAwIiwgY2hpbGRyZW46ICJEQVRFOiIgfSksIF9qc3goInNwYW4iLCB7IGNsYXNzTmFtZTogImZvbnQtbWVkaXVtIiwgY2hpbGRyZW46IG5ldyBEYXRlKCkudG9Mb2NhbGVEYXRlU3RyaW5nKCdlbi1VUycsIHsgbW9udGg6ICdsb25nJywgZGF5OiAnbnVtZXJpYycsIHllYXI6ICdudW1lcmljJyB9KSB9KSwgX2pzeCgic3BhbiIsIHsgY2xhc3NOYW1lOiAiZm9udC1ib2xkIHRleHQtc2xhdGUtNTAwIiwgY2hpbGRyZW46ICJTVUJKRUNUOiIgfSksIF9qc3goInNwYW4iLCB7IGNsYXNzTmFtZTogImZvbnQtYm9sZCBib3JkZXItYiBib3JkZXItc2xhdGUtMzAwIGlubGluZS1ibG9jayBwYi0xIHVwcGVyY2FzZSB0cmFja2luZy10aWdodCIsIGNoaWxkcmVuOiAiRGlhZ25vc3RpYyBvZiBQcm9kdWN0IE9wZXJhdGluZyBNb2RlbCBNYXR1cml0eSIgfSldIH0pIH0pKTsKY29uc3QgU2VjdGlvbiA9ICh7IHRpdGxlLCBjaGlsZHJlbiB9KSA9PiAoX2pzeHMoInNlY3Rpb24iLCB7IGNsYXNzTmFtZTogIm1iLTggbGFzdDptYi0wIiwgY2hpbGRyZW46IFtfanN4KCJoMiIsIHsgY2xhc3NOYW1lOiAibWVtby10aXRsZSB0ZXh0LXhsIHRleHQtc2xhdGUtOTAwIG1iLTQgYm9yZGVyLWwtNCBib3JkZXItZW1lcmFsZC02MDAgcGwtMyIsIGNoaWxkcmVuOiB0aXRsZSB9KSwgX2pzeCgiZGl2IiwgeyBjbGFzc05hbWU6ICJ0ZXh0LXNsYXRlLTcwMCBsZWFkaW5nLXJlbGF4ZWQgdGV4dC1zbSBtZDp0ZXh0LWJhc2Ugc3BhY2UteS00IiwgY2hpbGRyZW46IGNoaWxkcmVuIH0pXSB9KSk7CmNvbnN0IEFwcCA9ICgpID0+IHsKICAgIHJldHVybiAoX2pzeHMoImRpdiIsIHsgY2xhc3NOYW1lOiAibWluLWgtc2NyZWVuIHBiLTIwIiwgY2hpbGRyZW46IFtfanN4KEhlYWRlciwge30pLCBfanN4KCJtYWluIiwgeyBjbGFzc05hbWU6ICJtYXgtdy00eGwgbXgtYXV0byBtdC0xMCBweC02IHNtOnB4LTEyIiwgY2hpbGRyZW46IF9qc3hzKCJkaXYiLCB7IGNsYXNzTmFtZTogImJnLXdoaXRlIHAtOCBzbTpwLTE2IHNoYWRvdy0yeGwgcHJpbnQtc2hhZG93IHJvdW5kZWQtc20gYm9yZGVyLXQtOCBib3JkZXItZW1lcmFsZC03MDAiLCBjaGlsZHJlbjogW19qc3goTWVtb01ldGFkYXRhLCB7fSksIF9qc3hzKFNlY3Rpb24sIHsgdGl0bGU6ICIxLiBFWEVDVVRJVkUgU1VNTUFSWSIsIGNoaWxkcmVuOiBbX2pzeHMoInAiLCB7IGNoaWxkcmVuOiBbIkhhbHlrIEJhbmsgY3VycmVudGx5IHByZXNlbnRzIGFzIGEgIiwgX2pzeCgic3Ryb25nIiwgeyBjaGlsZHJlbjogIlwiRGlnaXRhbCBJbW1pZ3JhbnRcIiIgfSksICIgaW4gYW4gYWR2YW5jZWQgc3RhdGUgb2Ygc3RydWN0dXJhbCB0cmFuc2l0aW9uLiBXaGlsZSB0aGUgb3JnYW5pemF0aW9uIGhhcyBzdWNjZXNzZnVsbHkgYWRvcHRlZCBjb250ZW1wb3JhcnkgYXJjaGl0ZWN0dXJhbCBjb25zdHJ1Y3RzIGxpa2UgIiwgX2pzeCgiZW0iLCB7IGNoaWxkcmVuOiAiXCJUcmliZXNcIiIgfSksICIgYW5kIG1haW50YWlucyB0b3AtdGllciBlbmdhZ2VtZW50IG1ldHJpY3MgKERBVS9NQVUgZ3Jvd3RoIG9mIDM0LjklLCBBbm51YWwgUmVwb3J0IHAuIDE4KSwgaXQgcmVtYWlucyB0ZXRoZXJlZCB0byBhICIsIF9qc3goInN0cm9uZyIsIHsgY2hpbGRyZW46ICJQcm9qZWN0IE9wZXJhdGluZyBNb2RlbCIgfSksICIuIl0gfSksIF9qc3hzKCJwIiwgeyBjaGlsZHJlbjogWyJUaGUgYmFuayBhY3RzIGFzIGFuICIsIF9qc3goImVtIiwgeyBjaGlsZHJlbjogImVmZmljaWVudCBkZWxpdmVyZXIgb2YgZmVhdHVyZXMiIH0pLCAiIHJhdGhlciB0aGFuIGFuICIsIF9qc3goImVtIiwgeyBjaGlsZHJlbjogImVtcG93ZXJlZCBzb2x2ZXIgb2YgcHJvYmxlbXMiIH0pLCAiLiBVbnRpbCB0aGUgaW50ZXJuYWwgZnVuZGluZyBhbmQgaW5jZW50aXZlIG1lY2hhbmlzbXMgbW92ZSBmcm9tIHByb2plY3QtYmFzZWQgY29tcGxldGlvbiB0byBjb250aW51b3VzIG91dGNvbWUtYmFzZWQgb3B0aW1pemF0aW9uLCB0aGUgdHJhbnNpdGlvbiB0byBhIHRydWUgUHJvZHVjdC1MZWQgb3JnYW5pemF0aW9uIHdpbGwgcmVtYWluIHN0YWxsZWQgYXQgdGhlIGFkbWluaXN0cmF0aXZlIGxheWVyLiJdIH0pXSB9KSwgX2pzeChTZWN0aW9uLCB7IHRpdGxlOiAiMi4gRVZJREVOQ0UgT0YgJ0ZFQVRVUkUgRkFDVE9SWScgQkVIQVZJT1IgKFJJU0tTKSIsIGNoaWxkcmVuOiBfanN4cygidWwiLCB7IGNsYXNzTmFtZTogInNwYWNlLXktNiIsIGNoaWxkcmVuOiBbX2pzeHMoImxpIiwgeyBjbGFzc05hbWU6ICJiZy1zbGF0ZS01MCBwLTQgcm91bmRlZCBib3JkZXItbC00IGJvcmRlci1yZWQtNTAwIiwgY2hpbGRyZW46IFtfanN4KCJwIiwgeyBjbGFzc05hbWU6ICJmb250LWJvbGQgdGV4dC1yZWQtODAwIHRleHQtc20gbWItMSB1cHBlcmNhc2UgaXRhbGljIiwgY2hpbGRyZW46ICJcIk1lcmNlbmFyeSBJbmNlbnRpdmVzXCIiIH0pLCBfanN4cygiYmxvY2txdW90ZSIsIHsgY2xhc3NOYW1lOiAidGV4dC1zbGF0ZS04MDAgaXRhbGljIG1iLTIgYm9yZGVyLXNsYXRlLTIwMCBwbC00IGJvcmRlci1sLTIiLCBjaGlsZHJlbjogWyJcIlByaW5jaXBsZXMgaGF2ZSBiZWVuIGRldmVsb3BlZCB0byByZXdhcmQgVHJpYmUgcGFydGljaXBhbnRzIGJhc2VkIG9uIHllYXJseSByZXN1bHRzIG9yIHRoZSAqKmNvbXBsZXRpb24gb2YgYSBwcm9qZWN0KiouXCIiLCBfanN4KCJzcGFuIiwgeyBjbGFzc05hbWU6ICJ0ZXh0LXhzIGZvbnQtc2VtaWJvbGQgbm90LWl0YWxpYyBtbC0yIGJsb2NrIG10LTEiLCBjaGlsZHJlbjogIlx1MjAxNCBBbm51YWwgUmVwb3J0IDIwMjMsIHAuIDk0IiB9KV0gfSksIF9qc3hzKCJwIiwgeyBjbGFzc05hbWU6ICJ0ZXh0LXNtIiwgY2hpbGRyZW46IFtfanN4KCJzdHJvbmciLCB7IGNoaWxkcmVuOiAiUmlzazoiIH0pLCAiIFJld2FyZGluZyBcImNvbXBsZXRpb25cIiBpbmNlbnRpdml6ZXMgbWVyY2VuYXJpZXMuIEluIE1hcnR5IENhZ2FuJ3MgZnJhbWV3b3JrLCB0ZWFtcyBzaG91bGQgYmUgcmV3YXJkZWQgZm9yICIsIF9qc3goImVtIiwgeyBjaGlsZHJlbjogIk91dGNvbWVzIiB9KSwgIiAoZS5nLiwgaW5jcmVhc2VkIHJldGVudGlvbiksIG5vdCB0aGUgIiwgX2pzeCgiZW0iLCB7IGNoaWxkcmVuOiAiT3V0cHV0IiB9KSwgIiBvZiBhIGZpbmlzaGVkIHByb2plY3QuIFRoaXMgZHJpdmVzIGEgY3VsdHVyZSBvZiBcInNoaXBwaW5nIGp1bmtcIiB0aGF0IHNhdGlzZmllcyBpbnRlcm5hbCBzdGFrZWhvbGRlcnMgYnV0IG1heSBub3Qgc29sdmUgY3VzdG9tZXIgcHJvYmxlbXMuIl0gfSldIH0pLCBfanN4cygibGkiLCB7IGNsYXNzTmFtZTogImJnLXNsYXRlLTUwIHAtNCByb3VuZGVkIGJvcmRlci1sLTQgYm9yZGVyLXJlZC01MDAiLCBjaGlsZHJlbjogW19qc3goInAiLCB7IGNsYXNzTmFtZTogImZvbnQtYm9sZCB0ZXh0LXJlZC04MDAgdGV4dC1zbSBtYi0xIHVwcGVyY2FzZSBpdGFsaWMiLCBjaGlsZHJlbjogIlwiSVQgRnVuY3Rpb25hbCBTaWxvXCIiIH0pLCBfanN4cygiYmxvY2txdW90ZSIsIHsgY2xhc3NOYW1lOiAidGV4dC1zbGF0ZS04MDAgaXRhbGljIG1iLTIgYm9yZGVyLXNsYXRlLTIwMCBwbC00IGJvcmRlci1sLTIiLCBjaGlsZHJlbjogWyJcIlRoZSBtYWluIGdvYWwgb2YgR292VGVjaCBpcyB0by4uLiBpbnRlZ3JhdGUgcHVibGljIHNlcnZpY2VzIHRvICoqYXV0b21hdGUgaXRzIGludGVybmFsIGJ1c2luZXNzIHByb2Nlc3NlcyoqLlwiIiwgX2pzeCgic3BhbiIsIHsgY2xhc3NOYW1lOiAidGV4dC14cyBmb250LXNlbWlib2xkIG5vdC1pdGFsaWMgbWwtMiBibG9jayBtdC0xIiwgY2hpbGRyZW46ICJcdTIwMTQgU3VzdGFpbmFiaWxpdHkgUmVwb3J0IDIwMjMsIHAuIDIyIiB9KV0gfSksIF9qc3hzKCJwIiwgeyBjbGFzc05hbWU6ICJ0ZXh0LXNtIiwgY2hpbGRyZW46IFtfanN4KCJzdHJvbmciLCB7IGNoaWxkcmVuOiAiUmlzazoiIH0pLCAiIFRyZWF0aW5nIHRlY2hub2xvZ3kgYXMgYSB0b29sIGZvciBcImludGVybmFsIGF1dG9tYXRpb25cIiBjb25maXJtcyBhbiBJVCBTZXJ2aWNlIG1pbmRzZXQuIEluIGEgUHJvZHVjdCBNb2RlbCwgdGVjaG5vbG9neSAiLCBfanN4KCJlbSIsIHsgY2hpbGRyZW46ICJpcyIgfSksICIgdGhlIGJ1c2luZXNzLiBUaGUgc2VwYXJhdGUgXCJJVCBVbml0IERlcGFydG1lbnRzXCIgaW4gdGhlIGdvdmVybmFuY2UgY2hhcnQgKFNSIHAuIDI5KSBzdWdnZXN0IHRlY2hub2xvZ3kgaXMgc3RpbGwgdmlld2VkIGFzIGEgY29zdCBjZW50ZXIgc2VydmluZyB0aGUgYnVzaW5lc3MgXCJyZXF1aXJlbWVudHMuXCIiXSB9KV0gfSksIF9qc3hzKCJsaSIsIHsgY2xhc3NOYW1lOiAiYmctc2xhdGUtNTAgcC00IHJvdW5kZWQgYm9yZGVyLWwtNCBib3JkZXItcmVkLTUwMCIsIGNoaWxkcmVuOiBbX2pzeCgicCIsIHsgY2xhc3NOYW1lOiAiZm9udC1ib2xkIHRleHQtcmVkLTgwMCB0ZXh0LXNtIG1iLTEgdXBwZXJjYXNlIGl0YWxpYyIsIGNoaWxkcmVuOiAiXCJQcm9qZWN0LUNlbnRyaWMgR292ZXJuYW5jZVwiIiB9KSwgX2pzeHMoImJsb2NrcXVvdGUiLCB7IGNsYXNzTmFtZTogInRleHQtc2xhdGUtODAwIGl0YWxpYyBtYi0yIGJvcmRlci1zbGF0ZS0yMDAgcGwtNCBib3JkZXItbC0yIiwgY2hpbGRyZW46IFsiXCJUaGUgQm9hcmQgb2YgRGlyZWN0b3JzLi4uIGNvbnNpZGVyZWQgcmVwb3J0cyBmcm9tIHRoZSBNYW5hZ2VtZW50IEJvYXJkLi4uIGluY2x1ZGluZyB0aGUgQmFuaydzIHRlY2hub2xvZ2ljYWwgKip0cmFuc2Zvcm1hdGlvbioqLlwiIiwgX2pzeCgic3BhbiIsIHsgY2xhc3NOYW1lOiAidGV4dC14cyBmb250LXNlbWlib2xkIG5vdC1pdGFsaWMgbWwtMiBibG9jayBtdC0xIiwgY2hpbGRyZW46ICJcdTIwMTQgQW5udWFsIFJlcG9ydCAyMDIzLCBwLiA1NyIgfSldIH0pLCBfanN4cygicCIsIHsgY2xhc3NOYW1lOiAidGV4dC1zbSIsIGNoaWxkcmVuOiBbX2pzeCgic3Ryb25nIiwgeyBjaGlsZHJlbjogIlJpc2s6IiB9KSwgIiBWaWV3aW5nIHRyYW5zZm9ybWF0aW9uIGFzIGEgXCJwcm9qZWN0XCIgdG8gYmUgcmVwb3J0ZWQgb24gaW1wbGllcyBhIGZpbmlzaCBsaW5lLiBEaWdpdGFsIG5hdGl2ZXMgdHJlYXQgdHJhbnNmb3JtYXRpb24gYXMgYSBwZXJtYW5lbnQgY2hhbmdlIGluIHRoZSAiLCBfanN4KCJlbSIsIHsgY2hpbGRyZW46ICJQcm9kdWN0IE9wZXJhdGluZyBNb2RlbCIgfSksICIuIFRoZSBoZWF2eSByZWxpYW5jZSBvbiBcIkFnaWxlIHByb2plY3QgbWFuYWdlbWVudFwiIHRyYWluaW5nIChBUiBwLiA4OCkgcmF0aGVyIHRoYW4gXCJQcm9kdWN0IERpc2NvdmVyeVwiIGluZGljYXRlcyBhIGxhY2sgb2YgZW1waGFzaXMgb24gaW5ub3ZhdGlvbiBvdmVyIGRlbGl2ZXJ5LiJdIH0pXSB9KV0gfSkgfSksIF9qc3hzKFNlY3Rpb24sIHsgdGl0bGU6ICIzLiBTVFJBVEVHSUMgRElTQ09OTkVDVFMiLCBjaGlsZHJlbjogW19qc3hzKCJwIiwgeyBjaGlsZHJlbjogWyJUaGUgYmFuayBoaWdobGlnaHRzIGl0cyAiLCBfanN4KCJzdHJvbmciLCB7IGNoaWxkcmVuOiAiXCJEYXRhIEZhY3RvcnlcIiIgfSksICIgKEFSIHAuIDEwMCkgYW5kIGVjb3N5c3RlbSByYXBpZC1maXJlIGxhdW5jaGVzIChLaW5vLmt6LCBIYWx5ayBUcmF2ZWwpIGFzIGtleSBhY2hpZXZlbWVudHMuIEhvd2V2ZXIsIHRoZXJlIGlzIGEgZGlzdGluY3QgZGlzY29ubmVjdCBiZXR3ZWVuIHRoZSAiLCBfanN4KCJlbSIsIHsgY2hpbGRyZW46ICJJbm5vdmF0aW9uIiB9KSwgIiByaGV0b3JpYyBhbmQgdGhlICIsIF9qc3goImVtIiwgeyBjaGlsZHJlbjogIkZpbmFuY2lhbCBBbGxvY2F0aW9uIiB9KSwgIjoiXSB9KSwgX2pzeHMoImRpdiIsIHsgY2xhc3NOYW1lOiAiZ3JpZCBncmlkLWNvbHMtMSBtZDpncmlkLWNvbHMtMiBnYXAtNCBtdC00IiwgY2hpbGRyZW46IFtfanN4cygiZGl2IiwgeyBjbGFzc05hbWU6ICJib3JkZXIgYm9yZGVyLXNsYXRlLTIwMCBwLTQgcm91bmRlZCBiZy1lbWVyYWxkLTUwIiwgY2hpbGRyZW46IFtfanN4KCJoNCIsIHsgY2xhc3NOYW1lOiAiZm9udC1ib2xkIHRleHQtZW1lcmFsZC04MDAgdGV4dC14cyB1cHBlcmNhc2UgbWItMiIsIGNoaWxkcmVuOiAiQ2xhaW1lZCBTdHJhdGVneSIgfSksIF9qc3goInAiLCB7IGNsYXNzTmFtZTogInRleHQtc20gaXRhbGljIiwgY2hpbGRyZW46ICJcIkNyZWF0ZSBhIHJlbGlhYmxlLCB0ZWNobm9sb2d5LWRyaXZlbiwgaW5ub3ZhdGl2ZSBlY29zeXN0ZW1cIiAoQVIgcC4gNTEpIiB9KV0gfSksIF9qc3hzKCJkaXYiLCB7IGNsYXNzTmFtZTogImJvcmRlciBib3JkZXItc2xhdGUtMjAwIHAtNCByb3VuZGVkIGJnLWFtYmVyLTUwIiwgY2hpbGRyZW46IFtfanN4KCJoNCIsIHsgY2xhc3NOYW1lOiAiZm9udC1ib2xkIHRleHQtYW1iZXItODAwIHRleHQteHMgdXBwZXJjYXNlIG1iLTIiLCBjaGlsZHJlbjogIk9ic2VydmVkIFJlYWxpdHkiIH0pLCBfanN4KCJwIiwgeyBjbGFzc05hbWU6ICJ0ZXh0LXNtIGl0YWxpYyIsIGNoaWxkcmVuOiAiRm9jdXMgb24gXCJNYWludGVuYW5jZVwiIGFuZCBcIlN1cHBvcnRcIiBzdGFmZmluZyBpbiB0aGUgSVQgcGVyZm9ybWFuY2UgYXBwcmFpc2FsIG1ldGhvZG9sb2d5IChTUiBwLiA4NSkuIiB9KV0gfSldIH0pLCBfanN4cygicCIsIHsgY2xhc3NOYW1lOiAibXQtNCB0ZXh0LXNtIiwgY2hpbGRyZW46IFsiV2hpbGUgZGlnaXRhbCBjaGFubmVscyBzYXcgbWFzc2l2ZSBNQVUgZ3Jvd3RoLCB0aGUgZ292ZXJuYW5jZSBtb2RlbCBzdGlsbCByZWxpZXMgb24gYSAiLCBfanN4KCJzdHJvbmciLCB7IGNoaWxkcmVuOiAiXCJTdHJhdGVnaWMgUGxhbm5pbmcgQ29tbWl0dGVlXCIiIH0pLCAiIChBUiBwLiA3NSkgdGhhdCBjb25kdWN0cyBwcmVsaW1pbmFyeSByZXZpZXdzIG9mIGRyYWZ0IGJ1ZGdldHNcdTIwMTRhIGhhbGxtYXJrIG9mIHRoZSBwcm9qZWN0IG1pbmRzZXQgdGhhdCBsYWNrcyB0aGUgZmxleGliaWxpdHkgb2YgIiwgX2pzeCgiZW0iLCB7IGNoaWxkcmVuOiAiQ29udGludW91cyBGdW5kaW5nIiB9KSwgIiBmb3IgcGVyc2lzdGVudCBwcm9kdWN0IHRlYW1zLiJdIH0pXSB9KSwgIlNlY3Rpb24iLCBfanN4KFNlY3Rpb24sIHsgdGl0bGU6ICI0LiBUSEUgUFJFU0NSSVBUSU9OIiwgY2hpbGRyZW46IF9qc3hzKCJkaXYiLCB7IGNsYXNzTmFtZTogInNwYWNlLXktNCIsIGNoaWxkcmVuOiBbX2pzeHMoImRpdiIsIHsgY2xhc3NOYW1lOiAiZmxleCBnYXAtNCIsIGNoaWxkcmVuOiBbX2pzeCgiZGl2IiwgeyBjbGFzc05hbWU6ICJmbGV4LXNocmluay0wIHctOCBoLTggcm91bmRlZC1mdWxsIGJnLWVtZXJhbGQtMTAwIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHRleHQtZW1lcmFsZC03MDAgZm9udC1ib2xkIiwgY2hpbGRyZW46ICIxIiB9KSwgX2pzeHMoImRpdiIsIHsgY2hpbGRyZW46IFtfanN4KCJwIiwgeyBjbGFzc05hbWU6ICJmb250LWJvbGQgdGV4dC1zbGF0ZS04MDAgdGV4dC1zbSB1cHBlcmNhc2UiLCBjaGlsZHJlbjogIlNoaWZ0IGZyb20gUHJvamVjdCB0byBQZXJzaXN0ZW50IEZ1bmRpbmciIH0pLCBfanN4cygicCIsIHsgY2xhc3NOYW1lOiAidGV4dC1zbSB0ZXh0LXNsYXRlLTYwMCBtdC0xIiwgY2hpbGRyZW46IFsiQWJhbmRvbiBhbm51YWwgcHJvamVjdC1iYXNlZCBidWRnZXRpbmcgY3ljbGVzIGZvciB0aGUgRGlnaXRhbCBhbmQgRWNvc3lzdGVtIHVuaXRzLiBJbnN0ZWFkLCBwcm92aWRlIHN0YWJsZSwgbG9uZy10ZXJtIGZ1bmRpbmcgdG8gIiwgX2pzeCgic3Ryb25nIiwgeyBjaGlsZHJlbjogInBlcnNpc3RlbnQgcHJvZHVjdCB0ZWFtcyIgfSksICIsIGFsbG93aW5nIHRoZW0gdGhlIGF1dG9ub215IHRvIGFkanVzdCB0aGVpciBiYWNrbG9ncyBiYXNlZCBvbiBjb250aW51b3VzIGxlYXJuaW5nLiJdIH0pXSB9KV0gfSksIF9qc3hzKCJkaXYiLCB7IGNsYXNzTmFtZTogImZsZXggZ2FwLTQiLCBjaGlsZHJlbjogW19qc3goImRpdiIsIHsgY2xhc3NOYW1lOiAiZmxleC1zaHJpbmstMCB3LTggaC04IHJvdW5kZWQtZnVsbCBiZy1lbWVyYWxkLTEwMCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciB0ZXh0LWVtZXJhbGQtNzAwIGZvbnQtYm9sZCIsIGNoaWxkcmVuOiAiMiIgfSksIF9qc3hzKCJkaXYiLCB7IGNoaWxkcmVuOiBbX2pzeCgicCIsIHsgY2xhc3NOYW1lOiAiZm9udC1ib2xkIHRleHQtc2xhdGUtODAwIHRleHQtc20gdXBwZXJjYXNlIiwgY2hpbGRyZW46ICJFbGV2YXRlIFByb2R1Y3QgRGlzY292ZXJ5IiB9KSwgX2pzeHMoInAiLCB7IGNsYXNzTmFtZTogInRleHQtc20gdGV4dC1zbGF0ZS02MDAgbXQtMSIsIGNoaWxkcmVuOiBbIlJlcGxhY2UgXCJBZ2lsZSBwcm9qZWN0IG1hbmFnZW1lbnRcIiB0cmFpbmluZyB3aXRoIGludGVuc2l2ZSAiLCBfanN4KCJzdHJvbmciLCB7IGNoaWxkcmVuOiAiUHJvZHVjdCBEaXNjb3ZlcnkiIH0pLCAiIGNvYWNoaW5nLiBZb3VyIHRlYW1zIGFyZSBjdXJyZW50bHkgIiwgX2pzeCgiZW0iLCB7IGNoaWxkcmVuOiAiZGVsaXZlcnktb3B0aW1pemVkIiB9KSwgIi4gVGhleSBuZWVkIHRvIGJlY29tZSAiLCBfanN4KCJlbSIsIHsgY2hpbGRyZW46ICJ2YWx1ZS1vcHRpbWl6ZWQiIH0pLCAiIGJ5IGxlYXJuaW5nIGhvdyB0byBkZS1yaXNrIGlkZWFzIChWYWx1ZSwgVXNhYmlsaXR5LCBGZWFzaWJpbGl0eSwgVmlhYmlsaXR5KSBiZWZvcmUgdGhleSBlbnRlciB0aGUgc3ByaW50LiJdIH0pXSB9KV0gfSksIF9qc3hzKCJkaXYiLCB7IGNsYXNzTmFtZTogImZsZXggZ2FwLTQiLCBjaGlsZHJlbjogW19qc3goImRpdiIsIHsgY2xhc3NOYW1lOiAiZmxleC1zaHJpbmstMCB3LTggaC04IHJvdW5kZWQtZnVsbCBiZy1lbWVyYWxkLTEwMCBmbGV4IGl0ZW1zLWNlbnRlciBqdXN0aWZ5LWNlbnRlciB0ZXh0LWVtZXJhbGQtNzAwIGZvbnQtYm9sZCIsIGNoaWxkcmVuOiAiMyIgfSksIF9qc3hzKCJkaXYiLCB7IGNoaWxkcmVuOiBbX2pzeCgicCIsIHsgY2xhc3NOYW1lOiAiZm9udC1ib2xkIHRleHQtc2xhdGUtODAwIHRleHQtc20gdXBwZXJjYXNlIiwgY2hpbGRyZW46ICJSZWRlZmluZSBQZXJmb3JtYW5jZSBNZXRyaWNzIChLUEkgdG8gT0tSKSIgfSksIF9qc3hzKCJwIiwgeyBjbGFzc05hbWU6ICJ0ZXh0LXNtIHRleHQtc2xhdGUtNjAwIG10LTEiLCBjaGlsZHJlbjogWyJFbGltaW5hdGUgXCJwcm9qZWN0IGNvbXBsZXRpb25cIiBhcyBhIHBlcmZvcm1hbmNlIG1ldHJpYyBmb3IgVHJpYmVzLiBNb3ZlIHRvIGEgdHJ1ZSAiLCBfanN4KCJzdHJvbmciLCB7IGNoaWxkcmVuOiAiT0tSIChPYmplY3RpdmVzIGFuZCBLZXkgUmVzdWx0cykiIH0pLCAiIG1vZGVsIHdoZXJlIHRoZSBNYW5hZ2VtZW50IEJvYXJkIHNldHMgc3RyYXRlZ2ljIG9iamVjdGl2ZXMgYW5kIHRoZSBUcmliZXMgZGVmaW5lIHRoZSByZXN1bHRzIChPdXRjb21lcykgdGhleSB3aWxsIGFjaGlldmUgdG8gbWVldCB0aG9zZSBvYmplY3RpdmVzLiJdIH0pXSB9KV0gfSldIH0pIH0pLCBfanN4cygiZGl2IiwgeyBjbGFzc05hbWU6ICJtdC0xMiBwdC04IGJvcmRlci10IGJvcmRlci1zbGF0ZS0yMDAgdGV4dC1jZW50ZXIgdGV4dC1zbGF0ZS00MDAgdGV4dC14cyIsIGNoaWxkcmVuOiBbX2pzeHMoInAiLCB7IGNoaWxkcmVuOiBbIlRoaXMgZGlhZ25vc3RpYyBpcyBiYXNlZCBvbiBNYXJ0eSBDYWdhbidzICIsIF9qc3goImVtIiwgeyBjaGlsZHJlbjogIlRSQU5TRk9STUVEIiB9KSwgIiBmcmFtZXdvcmsuIl0gfSksIF9qc3goInAiLCB7IGNsYXNzTmFtZTogIm10LTEiLCBjaGlsZHJlbjogIkNvbmZpZGVudGlhbCBBdWRpdCBSZXBvcnQgZm9yIGludGVybmFsIHVzZSBieSBIYWx5ayBCYW5rIEJvYXJkIG9mIERpcmVjdG9ycyBvbmx5LiIgfSldIH0pXSB9KSB9KV0gfSkpOwp9OwpleHBvcnQgZGVmYXVsdCBBcHA7Cg=="}}</script>
+        <script>
+          window.APPLET_FILES = ["index.tsx","metadata.json","index.html","App.tsx"];
+          </script>
+        <script type="module">
+        (() => {
+  if (window.self === window.top) {
+    // Do not run the shim in the main window, only in iframes.
+    return;
+  }
+
+  window.API_KEY = 'GEMINI_API_KEY';
+  window.GEMINI_API_KEY = 'GEMINI_API_KEY';
+  window.process = window.process || {};
+  window.process.env = window.process.env || {};
+  window.process.env.API_KEY = window.API_KEY;
+  window.process.env.GEMINI_API_KEY = window.GEMINI_API_KEY;
+
+  const bootstrapChannel = new Promise((resolve) => {
+    window.addEventListener('message', (event) => {
+      if (event.origin !== 'https://aistudio.google.com') {
+        return;
+      }
+
+      if (event.data.type === 'bootstrap') {
+        resolve({
+          port: event.ports[0],
+          urlPatterns:
+              event.data.urlPatterns.map((pattern) => new RegExp(pattern)),
+        });
+      }
+    });
+  });
+
+  window.aistudio = window.aistudio || {
+    handleFullscreenEsc: true,
+    getHostUrl: async function() {
+      const hostPort = (await bootstrapChannel).port;
+      return new Promise((resolve) => {
+        const channel = new MessageChannel();
+        hostPort.postMessage(
+            {type: 'get_host_url'},
+            [channel.port2]);
+        const port = channel.port1;
+        port.onmessage = (message) => {
+          resolve(message.data.url);
+        };
+      });
+    },
+    hasSelectedApiKey: async function() {
+      const hostPort = (await bootstrapChannel).port;
+      return new Promise((resolve) => {
+        const channel = new MessageChannel();
+        hostPort.postMessage(
+            {type: 'has_selected_api_key'},
+            [channel.port2]);
+        const port = channel.port1;
+        port.onmessage = (message) => {
+          resolve(message.data);
+        };
+      });
+    },
+    openSelectKey: async function() {
+      const hostPort = (await bootstrapChannel).port;
+      const channel = new MessageChannel();
+      hostPort.postMessage(
+          {type: 'open_select_key'},
+          [channel.port2]);
+    },
+    getModelQuota: async function(model) {
+      const hostPort = (await bootstrapChannel).port;
+      return new Promise((resolve) => {
+        const channel = new MessageChannel();
+        hostPort.postMessage(
+            {type: 'get_model_quota', model},
+            [channel.port2]);
+        const port = channel.port1;
+        port.onmessage = (message) => {
+          resolve(message.data.modelQuota);
+        };
+      });
+    },
+  };
+
+  const nativeFetch = window.fetch;
+
+  /**
+   * @param {string | URL | Request} resource The resource of the fetch request.
+   * @param {RequestInit} options The options of the fetch request.
+   * @return {Promise!} The promise of the fetch request.
+   */
+  async function fetch(resource, options) {
+    const config = await bootstrapChannel;
+
+    const request = resource instanceof Request ?
+      resource.clone() :
+      new Request(resource, options);
+
+    if (!config.urlPatterns.some((pattern) => request.url.match(pattern))) {
+      return nativeFetch(resource, options);
+    }
+    const hostPort = config.port;
+
+    const channel = new MessageChannel();
+    const port = channel.port1;
+    let bodyBytes;
+    const transfer = [channel.port2];
+    const parts = [];
+    const buffer = await request.arrayBuffer();
+    if (buffer.byteLength) {
+      bodyBytes = buffer;
+      transfer.push(bodyBytes);
+    }
+    hostPort.postMessage(
+        {
+          type: 'fetch',
+          url: request.url,
+          method: request.method,
+          headers: [...request.headers.entries()],
+          body: bodyBytes,
+        },
+        transfer);
+
+    let streamController;
+    const body = new ReadableStream({
+      start(controller) {
+        streamController = controller;
+      },
+    });
+    let resolveReceive;
+    const receivePromise = new Promise((resolve) => {
+      resolveReceive = resolve;
+    });
+    port.onmessage = (message) => {
+      switch (message.data.type) {
+        case 'response':
+          resolveReceive(new Response(body, {
+            status: message.data.status,
+            statusText: message.data.statusText,
+            headers: new Headers(message.data.headers),
+          }));
+          break;
+        case 'body':
+          streamController.enqueue(message.data.data);
+          break;
+        case 'body_done':
+          streamController.close();
+          break;
+      }
+    };
+    return receivePromise;
+  }
+
+  Object.defineProperty(window, 'fetch', {
+    get: function() {
+      return fetch;
+    },
+  });
+
+  // See details in: https://github.com/angular/angular/issues/63064.
+  function patchHistoryStateFunctionForAngular(originalFn, baseHref) {
+    return (state, unused, url) => {
+      if (typeof url === 'string' && !url.startsWith('blob:')) {
+        url = baseHref + url;
+      }
+      return originalFn.apply(window.history, [state, unused, url]);
+    };
+  }
+
+  if (false) {
+    const baseHref = window.location.href;
+    window.history.replaceState = patchHistoryStateFunctionForAngular(window.history.replaceState, baseHref);
+    window.history.pushState = patchHistoryStateFunctionForAngular(window.history.pushState, baseHref);
+  }
+
+  const originalWebSocket = window.WebSocket;
+  class ProxiedWebSocket extends EventTarget {
+    /**
+     * @param {string} url The url of the websocket.
+     * @param {Object!} protocols The protocols of the websocket.
+     */
+    constructor(url, protocols) {
+      super();
+      this.url = url;
+      this.protocols = protocols;
+
+      this.open();
+    }
+
+    /** Opens the websocket. */
+    async open() {
+      const hostPort = (await bootstrapChannel).port;
+      const channel = new MessageChannel();
+      hostPort.postMessage(
+          {type: 'websocket_open', url: this.url, protocols: this.protocols},
+          [channel.port2]);
+      this.port = channel.port1;
+      this.port.onmessage = (message) => {
+        if (message.data.type === 'close') {
+          const event = new CloseEvent('close', {
+            code: message.data.code,
+            reason: message.data.reason,
+            wasClean: message.data.wasClean,
+          });
+          if (this.onclose) {
+            this.onclose(event);
+          }
+          this.dispatchEvent(event);
+          return;
+        } else if (message.data.type === 'open') {
+          const event = new Event('open');
+          if (this.onopen) {
+            this.onopen(event);
+          }
+          this.dispatchEvent(event);
+          return;
+        } else if (message.data.type === 'message') {
+          let data = message.data.data;
+          if (message.data.messageType === 'text' || message.data.messageType === 'message') {
+            data = new TextDecoder().decode(data);
+          }
+          const event = new MessageEvent('message', {
+            data,
+            type: message.data.messageType,
+          });
+          if (this.onmessage) {
+            this.onmessage(event);
+          }
+          this.dispatchEvent(event);
+          return;
+        } else if (message.data.type === 'error') {
+          const event = new ErrorEvent('error', {
+            message: message.data.message,
+          });
+          if (this.onerror) {
+            this.onerror(event);
+          }
+          this.dispatchEvent(event);
+          return;
+        }
+        console.error('received unknown message in frame', event.data);
+      };
+    }
+    /**
+     * @param {string|ArrayBuffer!} data The data to send.
+     */
+    send(data) {
+      if (typeof data === 'string') {
+        this.port.postMessage({type: 'send', data});
+      } else {
+        this.port.postMessage({type: 'send', data}, [data.buffer]);
+      }
+    }
+
+    /**
+     * @param {number} code The code of the close event.
+     * @param {string} reason The reason of the close event.
+     */
+    close(code, reason) {
+      this.port.postMessage({type: 'close', code, reason});
+    }
+  }
+
+  /**
+   * @param {string} url The url of the websocket.
+   * @param {Object!} protocols The protocols of the websocket.
+   * @return {WebSocket!} The websocket.
+   */
+  function createWebSocket(url, protocols) {
+    // This should come from the bootstrap channel, but we want this to
+    // work for the synchronous constructor here.
+    if (url.startsWith('wss://generativelanguage.googleapis.com/')) {
+      return Reflect.construct(ProxiedWebSocket, [url, protocols]);
+    }
+    return Reflect.construct(originalWebSocket, [url, protocols]);
+  }
+
+  Object.defineProperty(window, 'WebSocket', {
+    get: function() {
+      return createWebSocket;
+    },
+  });
+
+  async function instrumentErrorReporting() {
+    const errors = [];
+    let hostPort;
+
+    function reportError(message) {
+      if (!hostPort) {
+        errors.push(message);
+      } else {
+        hostPort.postMessage({type: 'error', message: message}, message);
+      }
+    }
+
+    function serialize(args) {
+      return args.map((a) => {
+        if (a instanceof Error || a instanceof ErrorEvent) {
+          return a.message;
+        }
+        if(a instanceof CloseEvent) {
+          return {code: a.code, reason: a.reason, wasClean: a.wasClean};
+        }
+        if( a instanceof Map) {
+          return JSON.parse(JSON.stringify([...a.entries()]));
+        }
+        if( a instanceof Set) {
+          return JSON.parse(JSON.stringify([...a.values()]));
+        }
+        if (a instanceof Object) {
+          return JSON.parse(JSON.stringify(a));
+        }
+        return a;
+      });
+    }
+
+    const originalConsole = window.console;
+    const originalConsoleLog = window.console.log;
+    const originalConsoleError = window.console.error;
+    const originalConsoleWarn = window.console.warn;
+    const originalConsoleDebug = window.console.debug;
+    window.console = {
+      ...originalConsole,
+      log: (message, ...args) => {
+        originalConsoleLog.apply(window.console, [message, ...args]);
+        const combined = serialize([message, ...args]);
+        reportError({type: 'console_log', message: combined });
+      },
+      debug: (message, ...args) => {
+        originalConsoleDebug.apply(window.console, [message, ...args]);
+        const combined = serialize([message, ...args]);
+        reportError({type: 'console_debug', message: combined });
+      },
+      error: (message, ...args) => {
+        originalConsoleError.apply(window.console, [message, ...args]);
+        const combined = serialize([message, ...args]);
+        reportError({type: 'console_error', message: combined });
+      },
+      warn: (message, ...args) => {
+        originalConsoleWarn.apply(window.console, [message, ...args]);
+        const combined = serialize([message, ...args]);
+        reportError({type: 'console_warn', message: combined });
+      },
+    };
+
+    window.onerror = (message, source, lineno, colno, error) => {
+      reportError({type: 'error', message: serialize([message]), source, lineno, colno, error});
+    };
+
+    window.onunhandledrejection = (event) => {
+      reportError({type: 'unhandledrejection', message: serialize([event.reason])});
+    };
+
+    window.alert = (message) => {
+      reportError({type: 'alert', message: serialize([message]) });
+    };
+
+    hostPort = (await bootstrapChannel).port;
+    for(const error of errors) {
+      hostPort.postMessage({type: 'error', message: error});
+    }
+  }
+
+  const availableFiles = new Set(window.APPLET_FILES || []);
+
+  instrumentErrorReporting();
+
+  if (false) {
+    const notifyLocationChange = async () => {
+      const hostPort = (await bootstrapChannel).port;
+      hostPort.postMessage({type: 'locationchange', href: location.href});
+    };
+
+    // Send initial state on load.
+    notifyLocationChange();
+
+    const originalPushState = history.pushState;
+    history.pushState = (...args) => {
+      originalPushState.apply(history, args);
+      notifyLocationChange();
+    };
+
+    const originalReplaceState = history.replaceState;
+    history.replaceState = (...args) => {
+      originalReplaceState.apply(history, args);
+      notifyLocationChange();
+    };
+    window.addEventListener('popstate', (e) => {
+      notifyLocationChange();
+    });
+  }
+
+  window.addEventListener('hashchange', async (e) =>{
+    const config = await bootstrapChannel;
+    const hostPort = config.port;
+    hostPort.postMessage({type: 'hashchange', hash: window.location.hash});
+    if (false) {
+      hostPort.postMessage({
+        type: 'locationchange',
+        href: location.href,
+      });
+    }
+  });
+
+  if (true) {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/html2canvas-pro';
+    script.onload = () => {
+      window.addEventListener('message', async (event) => {
+        if (event.data?.type === 'capture-screenshot') {
+          try {
+            const canvas = await html2canvas(document.documentElement, {
+              logging: false,
+              useCORS: true,
+              backgroundColor: null,
+              scale: 1,
+            });
+            const hostPort = (await bootstrapChannel).port;
+            hostPort.postMessage(
+              {
+                type: 'screenshot-result',
+                dataUrl: canvas.toDataURL('image/png'),
+                requestId: event.data.requestId,
+                scrollX: document.body.scrollLeft,
+                scrollY: document.body.scrollTop,
+              },
+            );
+          } catch (e) {
+            const hostPort = (await bootstrapChannel).port;
+            hostPort.postMessage(
+              {
+                type: 'screenshot-error',
+                error: e.message,
+                requestId: event.data.requestId,
+              });
+          }
+        }
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  if (false) {
+    const MAX_ANCESTOR_LEVEL = 3;
+    const MAX_DESCENDANT_LEVEL = 3;
+
+    function getElementSelector(el) {
+      if (!el || el.nodeType !== 1) {
+        return '';
+      }
+      const parts = [];
+      while(el && el.nodeType === 1 && el.tagName.toLowerCase() !== 'body') {
+        let part = el.tagName.toLowerCase();
+        if (el.id) {
+          part += '#' + CSS.escape(el.id);
+        }
+
+        const parent = el.parentElement;
+        if (parent) {
+          let nth = 1;
+          let prev = el.previousElementSibling;
+          while(prev) {
+            if (prev.tagName === el.tagName) {
+              nth++;
+            }
+            prev = prev.previousElementSibling;
+          }
+          part += ':nth-of-type(' + nth + ')';
+        }
+
+        parts.unshift(part);
+        el = el.parentElement;
+      }
+      return parts.join(' > ');
+    }
+
+    function getDomTreeAsString(element, depth, maxDepth) {
+      if (!element || element.nodeType !== 1 || depth > maxDepth) {
+        return '';
+      }
+      const tagName = element.tagName.toLowerCase();
+      let attrs = [];
+      if (element.id) {
+        attrs.push('id="' + element.id + '"');
+      }
+      if (element.classList.length > 0) {
+        attrs.push('class="' + element.classList.value + '"');
+      }
+      const attrString = attrs.length > 0 ? ' ' + attrs.join(' ') : '';
+
+      let content = '';
+      for (const node of element.childNodes) {
+        if (node.nodeType === 1) { // Element node
+          content += getDomTreeAsString(node, depth + 1, maxDepth);
+        } else if (node.nodeType === 3) { // Text node
+          content += node.textContent;
+        }
+      }
+
+      return '<' + tagName + attrString + '>' + content + '</' + tagName + '>';
+    }
+
+    const style = document.createElement('style');
+    style.textContent =
+      '.aistudio-focus-mode-highlight { box-shadow: inset 0 0 0 0.5px white, inset 0 0 0 1.5px #87a9ff !important; }' +
+      '#aistudio-focus-mode-tag { position: absolute; display: none; background: #87a9ff; border-radius: 4px; border: 0.5px solid white; z-index: 10000; text-transform: lowercase; padding: 2px 4px; color: #32302c; font-family: Inter, sans-serif; font-size: 12px; font-style: normal; font-weight: 400; line-height: 16px; pointer-events: none; }';
+    document.head.appendChild(style);
+
+    let highlightedElement = null;
+    let focusTag = null;
+    let resizeObserver = null;
+    let iframeLoaded = false;
+
+    function positionFocusTag() {
+      if (!highlightedElement || !focusTag) return;
+      requestAnimationFrame(() => {
+        focusTag.style.display = 'inline-flex';
+        const rect = highlightedElement.getBoundingClientRect();
+        focusTag.style.top =
+          rect.top + window.scrollY - focusTag.offsetHeight - 5 + 'px';
+        focusTag.style.left = rect.left + window.scrollX + 'px';
+      });
+    }
+
+    if (window.ResizeObserver) {
+      resizeObserver = new ResizeObserver(() => {
+        positionFocusTag();
+      });
+    }
+
+    function highlight(element) {
+      if (!iframeLoaded) return; // Do not highlight if iframe is not loaded
+      if (!focusTag) {
+        focusTag = document.createElement('div');
+        focusTag.id = 'aistudio-focus-mode-tag';
+        document.body.appendChild(focusTag);
+      }
+
+      const hadHighlightedElement = !!highlightedElement;
+      if (highlightedElement) {
+        highlightedElement.classList.remove('aistudio-focus-mode-highlight');
+        highlightedElement.removeAttribute('data-aistudio-tag-name');
+        if (resizeObserver) {
+          resizeObserver.unobserve(highlightedElement);
+        }
+      }
+      focusTag.style.display = 'none';
+      highlightedElement = element;
+      const hasHighlightedElement = !!highlightedElement;
+
+      if (!hadHighlightedElement && hasHighlightedElement) {
+        window.addEventListener('resize', positionFocusTag);
+        window.addEventListener('scroll', positionFocusTag, true);
+      } else if (hadHighlightedElement && !hasHighlightedElement) {
+        window.removeEventListener('resize', positionFocusTag);
+        window.removeEventListener('scroll', positionFocusTag, true);
+      }
+
+      if (highlightedElement) {
+        highlightedElement.setAttribute(
+          'data-aistudio-tag-name',
+          highlightedElement.tagName,
+        );
+        highlightedElement.classList.add('aistudio-focus-mode-highlight');
+        focusTag.textContent = highlightedElement.tagName.toLowerCase();
+        positionFocusTag();
+        if (resizeObserver) {
+          resizeObserver.observe(highlightedElement);
+        }
+      }
+    }
+
+    window.addEventListener('load', () => {
+      iframeLoaded = true;
+    });
+
+    window.addEventListener('message', async (event) => {
+      if (event.data?.type === 'highlight-element-at-point') {
+        try {
+          const element = document.elementFromPoint(
+            event.data.x,
+            event.data.y,
+          );
+          highlight(element);
+        } catch (e) {
+          highlight(null);
+        }
+      } else if (event.data?.type === 'highlight-element-by-selector') {
+        try {
+          const selector = event.data.selector;
+          if (selector) {
+            const element = document.querySelector(selector);
+            highlight(element);
+          } else {
+            highlight(null);
+          }
+        } catch (e) {
+          highlight(null);
+        }
+      } else if (event.data?.type === 'get-element-at-point') {
+        try {
+          const element = document.elementFromPoint(
+            event.data.x,
+            event.data.y,
+          );
+          const hostPort = (await bootstrapChannel).port;
+          if (!element) {
+            hostPort.postMessage({
+              type: 'element-at-point-error',
+              error: 'No element found at point',
+              requestId: event.data.requestId,
+            });
+            return;
+          }
+          const selector = getElementSelector(element);
+
+          let levelsUp = 0;
+          let root = element;
+          while(levelsUp < MAX_ANCESTOR_LEVEL && root.parentElement && root.parentElement.tagName.toLowerCase() !== 'html') {
+            root = root.parentElement;
+            levelsUp++;
+          }
+          const domString = getDomTreeAsString(root, 0, levelsUp + MAX_DESCENDANT_LEVEL);
+
+          const styles = window.getComputedStyle(element);
+          const css = {};
+          for (let i = 0; i < styles.length; i++) {
+            const key = styles[i];
+            css[key] = styles.getPropertyValue(key);
+          }
+          hostPort.postMessage({
+            type: 'element-at-point-result',
+            element: {
+              selector: selector,
+              domString: domString,
+              css: css,
+              x: event.data.x,
+              y: event.data.y,
+            },
+            requestId: event.data.requestId,
+          });
+        } catch (e) {
+          const hostPort = (await bootstrapChannel).port;
+          hostPort.postMessage({
+            type: 'element-at-point-error',
+            error: e.message,
+            requestId: event.data.requestId,
+          });
+        }
+      } else if (event.data?.type === 'change-element-style') {
+        try {
+          const selector = event.data.selector;
+          if (selector) {
+            const element = document.querySelector(selector);
+            if (element) {
+              element.style.setProperty(
+                event.data.property,
+                event.data.value,
+                'important',
+              );
+              positionFocusTag();
+            }
+          }
+        } catch (e) {}
+      }
+    });
+  }
+
+  window.addEventListener('keydown', async (event) => {
+    if (event.key === 'Escape' && window.aistudio?.handleFullscreenEsc) {
+      const hostPort = (await bootstrapChannel).port;
+      hostPort.postMessage({type: 'exit-fullscreen'});
+    }
+  });
+})();
+// # sourceURL=iframe_shim.js
+        </script>
+        <base href="https://ai.studio"/>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Operating Model Auditor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .memo-title { font-family: 'Playfair Display', serif; }
+        @media print {
+            .no-print { display: none; }
+            .print-shadow { box-shadow: none !important; border: 1px solid #e2e8f0; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+    <div id="root"></div>
+</body>
+</html>
+
+        <script type="module" onerror="console.warn('Failed to load the app. Try reloading it.')">import '@/index';</script>
+        
