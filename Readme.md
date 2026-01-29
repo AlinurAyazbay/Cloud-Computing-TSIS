@@ -120,4 +120,4 @@ Regulatory Risk: Low
 Financial Risk: Low
 Organizational Value: Very High
 
-<img width="468" height="651" alt="image" src="https://github.com/user-attachments/assets/3b11006d-bf5b-4ab1-a1cd-7100ce33646c" />
+
