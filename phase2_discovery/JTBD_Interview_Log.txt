@@ -1,0 +1,14 @@
+PM: Why is the resource verification process so slow and manual right now?
+Amina: Because I have to manually reconcile Jira data with Excel every week.
+
+PM: Why does reconciling resource data require manual work instead of coming from a single system?
+Amina: Because budgets are fixed in January but delivery plans change in March.
+
+PM: Why hasn’t this reconciliation been automated or standardized across teams?
+Amina: Because automation requests die in IT silos treated as cost centers.
+
+PM: Why do audits and compliance still depend on human-verified, paper-based confirmation?
+Amina: Because auditors require manually signed Work Completion Certificates.
+
+PM: Why does leadership trust signed documents more than digital outcomes or system-generated evidence
+Amina: Because the Board does not trust outcomes — only signed paper outputs. [SIMULATION_COMPLETE]
