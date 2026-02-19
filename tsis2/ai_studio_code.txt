@@ -1,0 +1,30 @@
+{
+  "compliance_score": 75,
+  "compliance_status": "PARTIAL_COMPLIANCE",
+  "detailed_checks": [
+    {
+      "requirement_id": "NFR-01",
+      "requirement_name": "Data Residency",
+      "status": "PASS",
+      "details": "API endpoint 'https://api.halyk.kz/v1/wcc' is internal to Kazakhstan, complying with data sovereignty laws."
+    },
+    {
+      "requirement_id": "FR-06",
+      "requirement_name": "Error Handling for Missing Data",
+      "status": "PASS",
+      "details": "The system correctly detects missing input, logs an error to alert the Coordinator, and halts execution, preventing silent failures."
+    },
+    {
+      "requirement_id": "NFR-04",
+      "requirement_name": "Security",
+      "status": "PASS",
+      "details": "Transport security is enforced via HTTPS (TLS 1.2+). No local storage is performed, so 'encryption at rest' relies on the receiving API."
+    },
+    {
+      "requirement_id": "FR-04",
+      "requirement_name": "Explainable Decision Logs",
+      "status": "FAIL",
+      "details": "Violation detected: The code applies a multiplier (* 1.2) to the budget without logging the source field, transformation logic, or output value, violating the transparency requirement."
+    }
+  ]
+}
